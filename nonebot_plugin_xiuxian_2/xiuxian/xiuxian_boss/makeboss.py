@@ -56,14 +56,10 @@ def get_boss_exp(boss_jj):
 
 
 def createboss():
-    top_user_info = sql_message.get_realm_top1_user() # 改成了境界第一
-    top_user_level = top_user_info['level']
-    if len(top_user_level) == 5:
-        level = top_user_level[:3] 
-    elif len(top_user_level) == 4: # 对江湖好手判断
-        level = "搬血境"
-
-    boss_jj = random.choice(jinjie_list[:jinjie_list.index(level) + 1])
+    # 固定随机最高境界为“祭道境”
+    highest_jinjie = "祭道境"
+    
+    boss_jj = random.choice(jinjie_list[:jinjie_list.index(highest_jinjie) + 1])
     bossinfo = get_boss_exp(boss_jj)
     bossinfo['name'] = random.choice(config["Boss名字"])
     bossinfo['jj'] = boss_jj
